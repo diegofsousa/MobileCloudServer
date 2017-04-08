@@ -5,15 +5,17 @@ from rest_framework.views import APIView
 from rest_framework import status
 from django.contrib.auth.models import User
 
+import json
+
 class StatusView(APIView):
 
 	def get(self, request, format=None):
 		try:
 			user = User.objects.filter(is_superuser=True)
-			return Response('Servidor: ' +str(user.first()) + ' - Status: OK!')
+			return Response(json.dumps(True))
 		except Exception as e:
 			user = User.objects.filter(is_superuser=True)
-			return Response('Servidor: ' +str(user.first()) + ' - Status: instavel :/')
+			return Response(json.dumps(False))
 		
 
 	def post(self, request, format=None):
