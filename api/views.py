@@ -20,8 +20,9 @@ class StatusView(APIView):
 
 	def post(self, request, format=None):
 		try:
+			print(request.data['data'])
 			listaIter = []
-			listaStr = request.data.split(',')
+			listaStr = request.data['data'].split(',')
 			for i in listaStr:listaIter.append(int(i))
 			listaIter.sort()
 			print(listaIter)
