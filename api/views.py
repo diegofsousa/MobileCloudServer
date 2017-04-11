@@ -16,7 +16,24 @@ class StatusView(APIView):
 		except Exception as e:
 			user = User.objects.filter(is_superuser=True)
 			return Response(json.dumps(False))
-		
+
+
+class OrderView(APIView):
+
+	def post(self, request, format=None):
+		try:
+			print(request.data)
+			listaIter = []
+			listaStr = request.data['data'].split(',')
+			for i in listaStr:listaIter.append(int(i))
+			listaIter.sort()
+			print(listaIter)
+			return Response(listaIter, status=status.HTTP_201_CREATED)
+		except Exception as e:
+			print(e)
+			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
+
+class SumView(APIView):
 
 	def post(self, request, format=None):
 		try:
@@ -24,8 +41,33 @@ class StatusView(APIView):
 			listaIter = []
 			listaStr = request.data['data'].split(',')
 			for i in listaStr:listaIter.append(int(i))
-			listaIter.sort()
-			print(listaIter)
-			return Response(listaIter, status=status.HTTP_201_CREATED)
+			print(sum(listaIter))
+			return Response(sum(listaIter), status=status.HTTP_201_CREATED)
+		except Exception as e:
+			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
+
+class MaxView(APIView):
+
+	def post(self, request, format=None):
+		try:
+			print(request.data['data'])
+			listaIter = []
+			listaStr = request.data['data'].split(',')
+			for i in listaStr:listaIter.append(int(i))
+			print(max(listaIter))
+			return Response(max(listaIter), status=status.HTTP_201_CREATED)
+		except Exception as e:
+			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
+
+class MinView(APIView):
+
+	def post(self, request, format=None):
+		try:
+			print(request.data['data'])
+			listaIter = []
+			listaStr = request.data['data'].split(',')
+			for i in listaStr:listaIter.append(int(i))
+			print(min(listaIter))
+			return Response(min(listaIter), status=status.HTTP_201_CREATED)
 		except Exception as e:
 			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)

@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from .views import StatusView
+from .views import StatusView, OrderView, MaxView, MinView, SumView
 
 helper_patterns = [
-    url(r'^', StatusView.as_view(), name='status'),
-    #url(r'^api/', include('api.urls')),
+	url(r'^$', StatusView.as_view(), name='status'),
+    url(r'^order/$', OrderView.as_view(), name='order'),
+    url(r'^sum/$', SumView.as_view(), name='sum'),
+    url(r'^max/$', MaxView.as_view(), name='max'),
+    url(r'^min/$', MinView.as_view(), name='min'),
+    #url(r'^sum', include('api.urls')),
 ]
 
 urlpatterns = helper_patterns
