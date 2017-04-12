@@ -23,7 +23,6 @@ helper_patterns = [
     url(r'^sum/$', SumView.as_view(), name='sum'),
     url(r'^max/$', MaxView.as_view(), name='max'),
     url(r'^min/$', MinView.as_view(), name='min'),
-    #url(r'^sum', include('api.urls')),
 ]
 
 urlpatterns = helper_patterns

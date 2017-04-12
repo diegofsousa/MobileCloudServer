@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 import json
 
 class StatusView(APIView):
+	'''
+	O método get dessa Class Based View retorna o status do servidor.
+	'''
 
 	def get(self, request, format=None):
 		try:
@@ -19,6 +22,9 @@ class StatusView(APIView):
 
 
 class OrderView(APIView):
+	'''
+	O método post dessa Class Based View retorna o uma lista ordenada dada uma lista de entrada.
+	'''
 
 	def post(self, request, format=None):
 		try:
@@ -34,6 +40,9 @@ class OrderView(APIView):
 			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
 
 class SumView(APIView):
+	'''
+	O método post dessa Class Based View retorna a soma dada uma lista de entrada.
+	'''
 
 	def post(self, request, format=None):
 		try:
@@ -47,7 +56,9 @@ class SumView(APIView):
 			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
 
 class MaxView(APIView):
-
+	'''
+	O método post dessa Class Based View retorna o maior número dada uma lista de entrada.
+	'''
 	def post(self, request, format=None):
 		try:
 			print(request.data['data'])
@@ -60,6 +71,9 @@ class MaxView(APIView):
 			return Response({"message":"403 Forbidden"}, status=status.HTTP_409_CONFLICT)
 
 class MinView(APIView):
+	'''
+	O método post dessa Class Based View retorna o menor número dada uma lista de entrada.
+	'''
 
 	def post(self, request, format=None):
 		try:
